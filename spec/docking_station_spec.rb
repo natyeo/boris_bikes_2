@@ -2,6 +2,12 @@ require 'docking_station.rb'
 
 describe DockingStation do
 
+  context 'when initialized' do
+    it 'has default capacity of 20 bikes' do
+      expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+    end
+  end
+
   describe '#release_bike' do
     it 'raises an error when there are no bikes available' do
       expect { subject.release_bike }.to raise_error("no bikes available")
@@ -16,7 +22,7 @@ describe DockingStation do
 
   describe '#dock' do
     it 'raises an error if more than 20 bikes docked' do
-      DockingStation::DEFAULT_CAPACITY.times { subject.dock(Bike.new) }
+      subject.capacity.times { subject.dock(Bike.new) }
       expect { subject.dock(Bike.new) }.to raise_error("Docking station full")
     end
 
