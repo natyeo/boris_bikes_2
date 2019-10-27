@@ -1,3 +1,5 @@
+require './lib/bike.rb'
+
 class DockingStation
 
  DEFAULT_CAPACITY = 20
@@ -11,7 +13,8 @@ class DockingStation
 
   def release_bike
     raise "no bikes available" if empty?
-    @docked_bikes.pop
+    working_bikes = @docked_bikes.select { |bike| bike.working? }
+    working_bikes.pop
   end
 
   def dock(bike)
@@ -32,12 +35,4 @@ class DockingStation
   def empty?
     @docked_bikes.empty?
   end
-end
-
-class Bike
-
-  def working?
-    true
-  end
-
 end

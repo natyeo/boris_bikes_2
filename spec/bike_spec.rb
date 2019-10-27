@@ -1,11 +1,18 @@
-require 'docking_station.rb'
+require 'bike.rb'
 
 describe Bike do
+let(:bike) { described_class.new }
 
   describe '#working?' do
-    it 'checks bike works' do
-      bike = Bike.new
+    it 'bike is working when initialized' do
       expect(bike).to be_working
+    end
+  end
+
+  describe '#report_broken' do
+    it 'changes status of working' do
+      bike.report_broken
+      expect(bike.working?).to eq false
     end
   end
 end
