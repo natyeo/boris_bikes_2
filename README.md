@@ -53,3 +53,40 @@ As a maintainer of the system,
 So that I can manage broken bikes and not disappoint users,
 I'd like docking stations to accept returning bikes (broken or not).
 ```
+
+## Getting started
+
+`git clone`
+`bundle install`
+
+## Usage
+
+```
+$ irb
+
+2.6.3 :001 > require './lib/docking_station.rb'
+ => true
+
+2.6.3 :002 > ds = DockingStation.new
+ => #<DockingStation:0x00007ffa1599d650 @docked_bikes=[], @capacity=20>
+
+2.6.3 :003 > ds.dock(b = Bike.new)
+ => [#<Bike:0x00007ffa15995568 @working=true>]
+
+2.6.3 :004 > ds.show_docked_bikes
+ => [#<Bike:0x00007ffa15995568 @working=true>]
+
+2.6.3 :005 > b.working?
+ => true
+
+2.6.3 :006 > ds.release_bike
+ => #<Bike:0x00007ffa15995568 @working=true>
+
+2.6.3 :007 > b.report_broken
+
+2.6.3 :008 > b.working?
+ => false
+ ```
+## Running tests
+
+`rspec`
